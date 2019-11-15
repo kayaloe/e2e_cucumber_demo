@@ -1,0 +1,32 @@
+{
+  "name": "cucumber_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "allure-commandline": "2.13.0",
+    "fs-extra": "8.1.0",
+    "lodash": "4.17.15",
+    "wdio-allure-reporter": "0.8.3",
+    "cucumber": "latest"
+  },
+  "devDependencies": {
+    "@wdio/allure-reporter": "5.12.1",
+    "@wdio/reporter": "^5.15.2",
+    "chai": "4.2.0",
+    "codelyzer": "5.1.0",
+    "selenium-standalone": "6.16.0",
+    "stylelint": "10.1.0",
+    "wdio-cucumber-framework": "2.2.8",
+    "wdio-selenium-standalone-service": "0.0.12",
+    "wdio-spec-reporter": "0.1.5",
+    "webdriverio": "4.14.4",
+    "xml2js": "0.4.22"
+  }
+}

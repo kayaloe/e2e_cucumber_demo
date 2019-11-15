@@ -1,0 +1,24 @@
+17:05:52.351 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "browserName": "chrome",
+  "handlesAlerts": true,
+  "javascriptEnabled": true,
+  "locationContextEnabled": true,
+  "loggingPrefs": {
+    "browser": "ALL",
+    "driver": "ALL"
+  },
+  "maxInstances": 5,
+  "requestOrigins": {
+    "url": "http:\u002f\u002fwebdriver.io",
+    "version": "4.14.4",
+    "name": "webdriverio"
+  },
+  "rotatable": true
+}
+17:05:52.352 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800}) on port 23403
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+17:05:53.408 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+17:05:53.447 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 0a8c6ef8eeff3babd6c83c0551d53d6f (org.openqa.selenium.chrome.ChromeDriverService)
+17:05:55.611 INFO [ActiveSessions$1.onStop] - Removing session 0a8c6ef8eeff3babd6c83c0551d53d6f (org.openqa.selenium.chrome.ChromeDriverService)
