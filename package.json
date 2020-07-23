@@ -1,14 +1,16 @@
 {
   "name": "cucumber_demo",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Testautomation Enviroment for UI-Tests",
+  "readme": "README.md",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx wdio"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": ["Testautomation", "UI-Test", "Testautomatisierung"],
+  "author": "Kaya Löher",
+  "maintainers": ["Kaya Löher"],
   "dependencies": {
     "allure-commandline": "2.13.0",
     "fs-extra": "8.1.0",

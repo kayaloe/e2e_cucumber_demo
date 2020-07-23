@@ -1,12 +1,14 @@
-var path = require('path');
-var thisFilesPath = path.resolve(__dirname);
-var seleniumManager = require('selenium-standalone');
-var fs = require('fs-extra');
+const path = require('path');
+const thisFilesPath = path.resolve(__dirname);
+const seleniumManager = require('selenium-standalone');
+const fs = require('fs-extra');
+const allure = require('allure-commandline');
+// const Reporter = require('./features/utils/Reporter')
 
 exports.config = {
     //
     // ====================
-    // Runner Configuration
+    //
     // ====================
     //
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
@@ -16,7 +18,7 @@ exports.config = {
     port: 4444,
     path: '/wd/hub',
     //
-    // Override default path ('/wd/hub') for chromedriver service.
+    // Override default path ('/wd/hub') for 83-mac64-chromedriver service.
     // path: '/',
     //
     // ==================
@@ -57,24 +59,40 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
+        // maxInstances can get overwritten per capability. So if you have an in house Selenium
+        // grid with only 5 firefox instance available you can make sure that not more than
+        // 5 instance gets started at a time.
         maxInstances: 5,
-        //
         browserName: 'chrome',
-
-        // chromeOptions: {
-        //     'goog:chromeOptions': {
-        //         //binary: './lib/chrome77_linux_de/google-chrome',
-        //         args: ['--no-sandbox', '--disable-dev-shm-usage', '--lang=de']
-        //     }
-        // }
-
+        'goog:chromeOptions': {
+            // to run chrome headless the following flags are required
+            // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+            // args: ['--headless', '--disable-gpu'],
+        }
+        //
+        // Parameter to ignore some or all default flags
+        // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
+        // - if value is an array: DevTools filters given default arguments
+        // ignoreDefaultArgs: true,
+        // ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
+    }, {
+        // maxInstances can get overwritten per capability. So if you have an in house Selenium
+        // grid with only 5 firefox instance available you can make sure that not more than
+        // 5 instance gets started at a time.
+        maxInstances: 5,
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+            // args: ['-headless']
+        },
         // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
+        // it is possible to configure which logTypes to exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
+        //
+        // Parameter to ignore some or all Puppeteer default arguments
+        // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
+
     }],
     //
     // ===================
@@ -85,77 +103,82 @@ exports.config = {
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'verbose',
     coloredLogs: true,
-    framework: 'cucumber',
     outputDir: __dirname,
-    //
-    // Set specific log levels per logger
-    // loggers:
-    // - webdriver, webdriverio
-    // - @wdio/applitools-service, @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-    // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner, @wdio/lambda-runner
-    // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/applitools-service': 'info'
-    // },
-    //
+
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    //bail: 0,
-    //
+    bail: 0,
+
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //baseUrl: 'http://localhost',
-    //
+
     // Default timeout for all waitFor* commands.
     //waitforTimeout: 10000,
-    //
+
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
     //connectionRetryTimeout: 90000,
-    //
+
     // Default request retries count
     //connectionRetryCount: 3,
-    //
+
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    //services: ['chromedriver'],
-    services: ['selenium-standalone'],
-    seleniumLogs: 'logs',
-    seleniumVersion: '3.141.59',
-    seleniumInstallArgs: {
-        drivers: {
-            chrome: { version: '78.0.3904.70' },
-        }
-    },
-    seleniumArgs: {
-        drivers: {
-            chrome: { version: '78.0.3904.70' },
-        }
-    },
+    //services: ['83-mac64-chromedriver'],
+
+
+    // services: ['selenium-standalone'],
+    // seleniumLogs: 'logs',
+    // seleniumVersion: '3.141.59',
+    // seleniumInstallArgs: {
+    //     drivers: {
+    //         chrome: { version: '78.0.3904.70' },
+    //     }
+    // },
+    // seleniumArgs: {
+    //     drivers: {
+    //         chrome: { version: '78.0.3904.70' },
+    //     }
+    // },
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
-    //
+
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: 1,
-    //
+    specFileRetries: 1,
+
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
+    reporters: ['spec', 'allure'],
+    reporterOptions: {
+        custom: {
+            expose: ['test:fail]'],
+            report: ['test.fail]']
+        },
+        allure: {
+            outputDir: './reports/allure-reports',
+            disableWebdriverStepsReporting: true,
+            //überprüfen, ob das die doppelten Screenshots verursacht
+            disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter: true
+        }
+    },
+
+    mochaOpts: {
+        ui: 'bdd',
+        timeout: 60000
+    },
 
     cucumberOpts: {
         // <boolean> show full backtrace for errors
@@ -193,7 +216,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with
         // tags matching the expression, see
         // https://docs.cucumber.io/tag-expressions/
-        // tagExpression: 'not @wip and not @ignored and not @ignored-by-qa and not @ignored-by-dev',
+        tagExpression: 'not @wip and not @ignored and not @ignored-by-qa and not @ignored-by-dev',
         // <boolean> add cucumber tags to feature or scenario name
         tagsInTitle: false,
         // <number> timeout for step definitions
@@ -215,45 +238,69 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function () {
-    //
-    //     // Start Selenium Server and Browser Drivers
-    //     //const libDir = `${thisFilesPath}${path.sep}lib`;
-    //
-    //     /*
-    //     * selenium-standalone löst die Pfade zu den Driver-Executables
-    //     * strikt nach folgendem Schema auf:
-    //     *
-    //     * <basePath>/<chromedriver|geckodriver|iedriver|edgedriver>/<opts.browser.version>-<opts.browser.arch>-<chromedriver|geckodriver|IEDriverServer.exe|MicrosoftEdgeDriver.exe>
-    //     *
-    //     * Der Pfad zur Selenium Server Standalone-Jar wird folgendermaßen aufgelöst:
-    //     *
-    //     * <basePath>/selenium-server/<opts.seleniumVersion>-server.jar
-    //     *
-    //     * */
-    //     var opts = {
-    //         javaArg: ['-Dselenium.LOGGER.level=DEBUG'],
-    //         basePath: './lib',
-    //         seleniumVersion: '3.141.59',
-    //
-    //         // drivers: {
-    //         //     chrome: {
-    //         //         version: '77',
-    //         //         arch: 'linux64'
-    //         //     },
-    //         // }
-    //     };
-    //
-    //     seleniumManager.start(opts)
-    //
-    // //         , (err) = > {
-    // //         if(err) {
-    // //             console.error(err);
-    // //         }
-    // //     }
-    // // )
-    // //     ;
-    // }
+    onPrepare: function () {
+
+        // Start Selenium Server and Browser Drivers
+        // const libDir = `${thisFilesPath}${path.sep}lib`;
+
+        /*
+        * selenium-standalone löst die Pfade zu den Driver-Executables
+        * strikt nach folgendem Schema auf:
+        *
+        * <basePath>/<83-mac64-chromedriver|geckodriver|iedriver|edgedriver>/<opts.browser.version>-<opts.browser.arch>-<83-mac64-chromedriver|geckodriver|IEDriverServer.exe|MicrosoftEdgeDriver.exe>
+        *
+        * Der Pfad zur Selenium Server Standalone-Jar wird folgendermaßen aufgelöst:
+        *
+        * <basePath>/selenium-server/<opts.seleniumVersion>-server.jar
+        *
+        * */
+        var opts = {
+            javaArg: ['-Dselenium.LOGGER.level=DEBUG'],
+            basePath: './lib',
+            seleniumVersion: '3.141.59',
+
+            drivers: {
+                chrome: {
+                    version: '83',
+                    arch: 'mac64'
+                },
+            }
+        };
+
+        seleniumManager.start(opts, (err) => {
+            if (err) {
+                console.error(err);
+            }
+        });
+
+        let screenshotPath = "./reports/";
+        fs.emptyDirSync(screenshotPath);
+    },
+
+    /**
+     * Gets executed after every cucumber-step.
+     */
+    afterStep: function () {
+        browser.screenshot();
+    },
+
+    /**
+     * Gets executed after all tests are done. You still have access to all global variables from
+     * the test.
+     * @param {Number} result 0 - test pass, 1 - test fail
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    after: function () {
+        let reportPath = "./allure-report/";
+        fs.emptyDirSync(reportPath);
+
+        let generation = allure(['generate', './reports/allure-reports', '--clean']);
+
+        generation.on('exit', function (exitCode) {
+            console.log('Generation is finished with code: ' + exitCode);
+        });
+    }
 
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
@@ -358,32 +405,4 @@ exports.config = {
      */
 //onReload: function(oldSessionId, newSessionId) {
 //}
-
-
 }
-
-// function setCapabilities(browserName) {
-//     if (browserName === 'Firefox') {
-//         return [
-//             {
-//                 maxInstances: 1,
-//                 browserName: 'firefox',
-//                 'moz:firefoxOptions': {
-//                     binary: './lib/firefox69_linux_de/firefox',
-//                     args: ['--headless']
-//                 }
-//             }
-//         ];
-//     } else {
-//         return [
-//             {
-//                 maxInstances: 1,
-//                 browserName: 'chrome',
-//                 'goog:chromeOptions': {
-//                     binary: './lib/chrome77_linux_de/google-chrome',
-//                     args: ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--lang=de']
-//                 }
-//             }
-//         ]
-//     }
-// }
