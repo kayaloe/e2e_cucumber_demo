@@ -1,7 +1,9 @@
-var path = require('path');
-var thisFilesPath = path.resolve(__dirname);
-var seleniumManager = require('selenium-standalone');
-var fs = require('fs-extra');
+const path = require('path');
+const thisFilesPath = path.resolve(__dirname);
+const seleniumManager = require('selenium-standalone');
+const fs = require('fs-extra');
+const allure = require('allure-commandline');
+// const Reporter = require('./features/utils/Reporter')
 
 exports.config = {
     //
@@ -16,7 +18,7 @@ exports.config = {
     port: 4444,
     path: '/wd/hub',
     //
-    // Override default path ('/wd/hub') for chromedriver service.
+    // Override default path ('/wd/hub') for 83-mac64-chromedriver service.
     // path: '/',
     //
     // ==================
@@ -86,7 +88,7 @@ exports.config = {
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        excludeDriverLogs: ['bugreport', 'server'],
+        // excludeDriverLogs: ['bugreport', 'server'],
         //
         // Parameter to ignore some or all Puppeteer default arguments
         // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
@@ -127,7 +129,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    //services: ['chromedriver'],
+    //services: ['83-mac64-chromedriver'],
 
 
     // services: ['selenium-standalone'],
@@ -214,7 +216,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with
         // tags matching the expression, see
         // https://docs.cucumber.io/tag-expressions/
-        // tagExpression: 'not @wip and not @ignored and not @ignored-by-qa and not @ignored-by-dev',
+        tagExpression: 'not @wip and not @ignored and not @ignored-by-qa and not @ignored-by-dev',
         // <boolean> add cucumber tags to feature or scenario name
         tagsInTitle: false,
         // <number> timeout for step definitions
@@ -245,7 +247,7 @@ exports.config = {
         * selenium-standalone löst die Pfade zu den Driver-Executables
         * strikt nach folgendem Schema auf:
         *
-        * <basePath>/<chromedriver|geckodriver|iedriver|edgedriver>/<opts.browser.version>-<opts.browser.arch>-<chromedriver|geckodriver|IEDriverServer.exe|MicrosoftEdgeDriver.exe>
+        * <basePath>/<83-mac64-chromedriver|geckodriver|iedriver|edgedriver>/<opts.browser.version>-<opts.browser.arch>-<83-mac64-chromedriver|geckodriver|IEDriverServer.exe|MicrosoftEdgeDriver.exe>
         *
         * Der Pfad zur Selenium Server Standalone-Jar wird folgendermaßen aufgelöst:
         *
@@ -257,16 +259,48 @@ exports.config = {
             basePath: './lib',
             seleniumVersion: '3.141.59',
 
-            // drivers: {
-            //     chrome: {
-            //         version: '77',
-            //         arch: 'linux64'
-            //     },
-            // }
+            drivers: {
+                chrome: {
+                    version: '83',
+                    arch: 'mac64'
+                },
+            }
         };
 
-        seleniumManager.start(opts)
+        seleniumManager.start(opts, (err) => {
+            if (err) {
+                console.error(err);
+            }
+        });
+
+        let screenshotPath = "./reports/";
+        fs.emptyDirSync(screenshotPath);
     },
+
+    /**
+     * Gets executed after every cucumber-step.
+     */
+    afterStep: function () {
+        browser.screenshot();
+    },
+
+    /**
+     * Gets executed after all tests are done. You still have access to all global variables from
+     * the test.
+     * @param {Number} result 0 - test pass, 1 - test fail
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    after: function () {
+        let reportPath = "./allure-report/";
+        fs.emptyDirSync(reportPath);
+
+        let generation = allure(['generate', './reports/allure-reports', '--clean']);
+
+        generation.on('exit', function (exitCode) {
+            console.log('Generation is finished with code: ' + exitCode);
+        });
+    }
 
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
