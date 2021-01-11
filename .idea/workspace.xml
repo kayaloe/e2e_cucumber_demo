@@ -2,73 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7ce50b-02e7-4292-ac61-764590db19d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/allure-report/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/184393d43630743c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/19b618f02c7c5d9f.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/43cc55a600ee261e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/70d90afa7de056c2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/914ed93f8244e2e3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/d1a3ee1cf45b37a0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/attachments/efc00da85065352e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/behaviors.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/behaviors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/categories.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/categories.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/packages.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/suites.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/suites.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/test-cases/292a52d6daa129f4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/test-cases/ad12d783fb640d2d.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/test-cases/d96d5a0f2989d40.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/data/timeline.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/export/influxDbData.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/export/mail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/export/prometheusData.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/history/categories-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/history/duration-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/history/history-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/history/history.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/history/retry-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/plugins/behaviors/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/plugins/packages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/plugins/screen-diff/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/plugins/screen-diff/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/behaviors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/categories-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/categories.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/duration-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/duration.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/environment.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/executors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/history-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/retry-trend.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/severity.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/status-chart.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/suites.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/allure-report/widgets/summary.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/chromedriver/87-mac64-chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/selenium-server/3.8.1-server.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/015a0481-1fb7-4dff-8c62-a1b263586f3f-testsuite.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/056ec7ce-145e-46d2-a485-fdb814769a05-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/1e3838dd-9d19-48be-818c-05379518c9ef-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/44409d00-4164-4624-b9a0-ac0640a751d2-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/4e058266-1bb0-4f1e-828d-7aaa4569c5b8-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/52c66aae-7c84-406c-bf49-79a1da358666-testsuite.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/628a1bbd-1212-4efd-99a1-cdc512495640-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/7ae2b65d-f3cf-48f0-94b1-b39a2acd6e78-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/c026fcce-0d62-4364-ac6e-055b45044e75-testsuite.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/allure-reports/e0c7ca31-7ca3-47ef-95b7-99d130cec6f4-attachment.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/step_definitions/start.steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/features/step_definitions/start.steps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/test.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/test.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/selenium-server/3.141.59-server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/selenium-server/3.141.5-server.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wdio.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/wdio.conf.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +92,7 @@
       <workItem from="1596104497114" duration="369000" />
       <workItem from="1596309808037" duration="889000" />
       <workItem from="1600237015060" duration="66000" />
-      <workItem from="1610096581470" duration="2980000" />
+      <workItem from="1610096581470" duration="3988000" />
     </task>
     <servers />
   </component>

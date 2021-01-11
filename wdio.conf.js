@@ -1,6 +1,6 @@
 const path = require('path');
-const thisFilesPath = path.resolve(__dirname);
-const seleniumManager = require('selenium-standalone');
+// const thisFilesPath = path.resolve(__dirname);
+// const seleniumManager = require('selenium-standalone');
 const fs = require('fs-extra');
 const allure = require('allure-commandline');
 // const Reporter = require('./features/utils/Reporter')
