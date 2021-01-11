@@ -8,19 +8,25 @@
   "scripts": {
     "test": "npx wdio"
   },
-  "keywords": ["Testautomation", "UI-Test", "Testautomatisierung"],
+  "keywords": [
+    "Testautomation",
+    "UI-Test",
+    "Testautomatisierung"
+  ],
   "author": "Kaya Löher",
-  "maintainers": ["Kaya Löher"],
+  "maintainers": [
+    "Kaya Löher"
+  ],
   "dependencies": {
     "allure-commandline": "2.13.0",
+    "cucumber": "^7.0.0-rc.0",
     "fs-extra": "8.1.0",
     "lodash": "4.17.19",
-    "wdio-allure-reporter": "0.8.3",
-    "cucumber": "latest"
+    "wdio-allure-reporter": "0.8.3"
   },
   "devDependencies": {
     "@wdio/allure-reporter": "5.12.1",
-    "@wdio/reporter": "^5.15.2",
+    "@wdio/reporter": "^5.22.4",
     "chai": "4.2.0",
     "codelyzer": "5.1.0",
     "selenium-standalone": "6.16.0",

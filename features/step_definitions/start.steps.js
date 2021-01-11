@@ -11,6 +11,19 @@ When('ich die Seite der HTW Berlin öffne', function () {
 });
 
 Then('sehe ich die Seite der HTW Berlin', function () {
-    assert.equal(browser.getTitle(), 'HTW Berlin - Hochschule für Technik und Wirtschaft Berlin')
-   // browser.getTitle().should.be.equal('HTW Berlin - Hochschule für Technik und Wirtschaft Berlin')
+    assert.equal(browser.getTitle(), 'HTW Berlin - Hochschule für Technik und Wirtschaft Berlin');
+});
+
+When('ich in der Suche {string} eingebe', function (string) {
+    if(string=='akademischer Kalender'){
+        $('input.noSwipe').setValue('akademischer Kalender');
+    }
+});
+
+When('ich den Suchbutton klicke', function () {
+    $('#suchbutton').click();
+});
+
+Then('befinde ich mich in den Suchergebnissen', function () {
+    assert.equal(browser.getTitle(), 'Suchergebnisse');
 });
