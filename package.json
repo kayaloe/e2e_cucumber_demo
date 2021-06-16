@@ -21,7 +21,7 @@
     "allure-commandline": "2.13.0",
     "cucumber": "^7.0.0-rc.0",
     "fs-extra": "8.1.0",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "wdio-allure-reporter": "0.8.3"
   },
   "devDependencies": {
