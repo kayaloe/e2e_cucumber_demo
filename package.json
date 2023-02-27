@@ -34,7 +34,7 @@
     "wdio-cucumber-framework": "2.2.8",
     "wdio-selenium-standalone-service": "0.0.12",
     "wdio-spec-reporter": "0.1.5",
-    "webdriverio": "4.14.4",
+    "webdriverio": "8.3.11",
     "xml2js": "0.4.22"
   }
 }
